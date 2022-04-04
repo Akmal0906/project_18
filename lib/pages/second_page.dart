@@ -66,15 +66,16 @@ class _SecondPageState extends State<SecondPage> {
       body: Center(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Colors.yellow,
-            onPrimary: Colors.white,
+             primary: Colors.yellow,
+             onPrimary: Colors.white,
           ),
           onPressed: () {
-            if (Platform.isAndroid) {
-              _androidDialog();
-            } else if (Platform.isIOS) {
-              _iosDialog();
-            }
+            // if (Platform.isAndroid) {
+            //   _androidDialog();
+            // } else if (Platform.isIOS) {
+            //   _iosDialog();
+            // }
+            _iosDialog();
           },
           child: Text('Secondpage Button'),
         ),

@@ -8,7 +8,16 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  late PageController _pageController;
+  int _selectedPage=0;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pageController=PageController();
+  }
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -16,6 +25,12 @@ class _FirstPageState extends State<FirstPage> {
         title: Text('Flutter course'),
       ),
       body: PageView(
+        controller:_pageController ,
+        onPageChanged: (int index){
+          setState(() {
+            _selectedPage=index;
+          });
+        },
         children: [
           Container(
             color: Colors.deepPurple,
@@ -33,9 +48,17 @@ class _FirstPageState extends State<FirstPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home)),
-          BottomNavigationBarItem(icon: Icon(Icons.business)),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+          BottomNavigationBarItem(icon: Icon(Icons.business), label: 'business'),
         ],
+        currentIndex: _selectedPage,
+        selectedItemColor: Colors.yellow,
+          onTap: (int index){
+          setState(() {
+            _selectedPage=index;
+            _pageController.animateToPage(index, duration: Duration(microseconds: 200), curve: Curves.easeIn);
+          });
+          },
       ),
     );
   }
